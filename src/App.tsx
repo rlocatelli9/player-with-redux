@@ -4,9 +4,9 @@ import { store } from "./stores"
 
 export function App() {
   return (
-    <ReduxProvider store={store}>
+    <main className="h-dvh w-dvw bg-zinc-900 text-zinc-50 flex justify-center items-center">
       <TodoComponent />
-    </ReduxProvider>
+    </main>
   )
 }
 
