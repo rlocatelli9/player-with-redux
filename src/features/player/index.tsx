@@ -8,7 +8,9 @@ export function PlayerComponent() {
         </div>
       </div>
 
-      <main></main>
+      <main>
+        stes
+      </main>
     </div>
   )
 }
