@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin 'tailwind-scrollbar';
 
 body {
   width: 100dvw;
@@ -7,3 +8,4 @@ body {
   overflow-y: auto;
   -webkit-font-smoothing: antialiased;
 }
+
