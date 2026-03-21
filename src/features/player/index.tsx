@@ -13,14 +13,27 @@ export function PlayerComponent() {
 
         <button
           type="button"
-          className="flex items-center gap-2 rounded bg-violet-500 px-3 py-2 text-sm font-medium text-white"
+          className={`
+            flex items-center gap-2 rounded bg-violet-500 px-3 py-2 
+            text-sm font-medium text-white
+          `}
         >
           <MessageCircle className="w-4 h-4" />
           Deixar feedback
         </button>
       </div>
 
-      <main>stes</main>
+      <main
+        className={`
+          relative flex overflow-hidden rounded-lg border border-zinc-800
+          bg-zinc-900 shadow
+        `}
+      >
+        <div className="flex-1">Video</div>
+        <aside className="w-80 border-l border-zinc-800 bg-zinc-900 h-[600px]">
+          modulos
+        </aside>
+      </main>
     </div>
   )
 }
