@@ -1,5 +1,4 @@
 import { Player } from './features'
-import { PlayerComponent } from './features/player'
 
 export function App() {
   return (
@@ -8,7 +7,7 @@ export function App() {
         h-dvh w-dvw bg-black text-zinc-50 flex justify-center items-center
       `}
     >
-      <PlayerComponent />
+      <Player />
     </main>
   )
 }

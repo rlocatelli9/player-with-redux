@@ -1,6 +1,6 @@
-import { useState, type SubmitEvent } from "react"
-import { useDispatch } from "react-redux"
-import { add } from "../../stores/todo"
+import { type SubmitEvent, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { add } from '../store/slice'
 
 export function AddTodo() {
   const [todo, setTodo] = useState('')
@@ -16,7 +16,12 @@ export function AddTodo() {
     <form
       onSubmit={handleSubmit}
       method="post"
-      style={{ display: 'flex', gap: '1rem', justifyContent: 'center', paddingTop: '1rem' }}
+      style={{
+        display: 'flex',
+        gap: '1rem',
+        justifyContent: 'center',
+        paddingTop: '1rem',
+      }}
     >
       <input
         aria-label="new todo"
