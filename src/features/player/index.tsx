@@ -1,14 +1,13 @@
-import { ChevronDown, Video } from 'lucide-react'
 import { FeedbackButton } from '../../shared/components/feedback-button'
-import { VideoHeader } from './components/Header'
+import { Header } from './components/Header'
 import { Module } from './components/Module'
-import { VideoPlayer } from './components/Player'
+import { Player } from './components/Player'
 
 export function PlayerComponent() {
   return (
     <div className="flex w-[1100px] flex-col gap-6">
       <div className="flex items-center justify-between">
-        <VideoHeader />
+        <Header />
 
         <FeedbackButton />
       </div>
@@ -20,7 +19,7 @@ export function PlayerComponent() {
         `}
       >
         <div className="flex-1">
-          <VideoPlayer />
+          <Player />
         </div>
         <aside
           className={`

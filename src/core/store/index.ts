@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit"
+import { playerSlice } from "../../features/player/store/slice"
 import { todoSlice } from "../../features/todo/store/slice"
-import { videoSlice } from "../../features/video/store/slice"
 
 export const store = configureStore({
   reducer: {
     todo: todoSlice.reducer,
-    video: videoSlice.reducer,
+    player: playerSlice.reducer,
   }
 })
 

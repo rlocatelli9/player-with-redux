@@ -1,6 +1,6 @@
 import ReactPlayer from 'react-player'
 
-export function VideoPlayer() {
+export function Player() {
   return (
     <div className="w-full bg-zinc-950 aspect-video">
       <ReactPlayer
