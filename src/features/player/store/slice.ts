@@ -1,7 +1,6 @@
 // src/entities/video/model/slice.ts
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '../../../core/store'
-import type { Video } from '../../../shared/types'
 
 export interface ModuleProps {
   modules: {
@@ -15,55 +14,61 @@ export interface ModuleProps {
   }[]
 }
 
+export interface CurrentVideoProps {
+  moduleIndex: number,
+  lessonIndex: number
+}
+
 export interface VideoState {
-  currentVideo: Video | null
-  status: 'idle' | 'loading' | 'error',
+  current: CurrentVideoProps,
   course: ModuleProps
 }
 
 const initialState: VideoState = {
-  currentVideo: null,
-  status: 'idle',
+  current: {
+    moduleIndex: 0,
+    lessonIndex: 0
+  },
   course: {
     modules: [
       {
         id: "0",
         title: "Fundamentos do React",
         lessons: [
-          { id: "OxIDLMC7dcU", title: "O que é React?", duration: 600000 },
-          { id: "Ke90Tje7VS0", title: "Criando o primeiro projeto", duration: 1200000 }
+          { id: "NhUr8cwDiiM", title: "O que é React?", duration: 600000 },
+          { id: "_gHr2Pe5LCY", title: "Criando o primeiro projeto", duration: 1200000 }
         ]
       },
       {
         id: "1",
         title: "Estado e Imutabilidade",
         lessons: [
-          { id: "SqcY0GlETPk", title: "Entendendo o useState", duration: 900000 },
-          { id: "KCn0uHELd64", title: "Trabalhando com Listas", duration: 750000 }
+          { id: "mY9MLdifqe0", title: "Entendendo o useState", duration: 900000 },
+          { id: "YMxc9biU9ms", title: "Trabalhando com Listas", duration: 750000 }
         ]
       },
       {
         id: "2",
         title: "Introdução ao Redux",
         lessons: [
-          { id: "u99tNt3TZf8", title: "Arquitetura Flux e Redux", duration: 1800000 },
-          { id: "Wf2V_6M-N7o", title: "Actions e Reducers", duration: 2100000 }
+          { id: "69e1MoUWE1g", title: "Arquitetura Flux e Redux", duration: 1800000 },
+          { id: "2lxCaLJ2Rbk", title: "Actions e Reducers", duration: 2100000 }
         ]
       },
       {
         id: "3",
         title: "Redux Toolkit (RTK)",
         lessons: [
-          { id: "i9S_3HOn0U0", title: "Simplificando com RTK", duration: 2400000 },
-          { id: "fXpE79atjTo", title: "Configurando o Store", duration: 1320000 }
+          { id: "3aFexvlQ2A8", title: "Simplificando com RTK", duration: 2400000 },
+          { id: "ciTi5tPCKa8", title: "Configurando o Store", duration: 1320000 }
         ]
       },
       {
         id: "4",
         title: "Chamadas Assíncronas",
         lessons: [
-          { id: "8M5W_SMeXro", title: "Redux Thunk na prática", duration: 2700000 },
-          { id: "VCo77mK6kXk", title: "Requisições HTTP com Axios", duration: 1980000 }
+          { id: "z2XCUu2wIl0", title: "Redux Thunk na prática", duration: 2700000 },
+          { id: "FnKc64b7bUI", title: "Requisições HTTP com Axios", duration: 1980000 }
         ]
       }
     ]
@@ -74,12 +79,20 @@ export const playerSlice = createSlice({
   name: 'player',
   initialState,
   reducers: {
-    setVideo: (state, action: PayloadAction<Video>) => {
-      state.currentVideo = action.payload
+    play: (state, action: PayloadAction<CurrentVideoProps>) => {
+      state.current = action.payload
     },
+
   },
 })
 
-export const { setVideo } = playerSlice.actions
+export const { play } = playerSlice.actions
+
 export const selectPlayer = (state: RootState) => state.player
 export const selectModule = (state: RootState) => state.player.course.modules
+export const selectCurrentModule = (state: RootState) => state.player.course.modules[state.player.current.moduleIndex]
+export const selectCurrentLesson = (state: RootState) => {
+  return state.player.course
+    .modules[state.player.current.moduleIndex]
+    .lessons[state.player.current.lessonIndex]
+}
