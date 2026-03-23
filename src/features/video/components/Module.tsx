@@ -1,5 +1,6 @@
-import { ChevronDown, Video } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 import { Lesson } from './Lesson'
+import * as Collapsible from '@radix-ui/react-collapsible'
 
 interface ModuleProps {
   title: string
@@ -9,10 +10,10 @@ interface ModuleProps {
 
 export function Module({ title, amountOfLesson, moduleIndex }: ModuleProps) {
   return (
-    <div>
-      <button
+    <Collapsible.Root className='group'>
+      <Collapsible.Trigger
         type="button"
-        className="flex w-full items-center gap-3 bg-zinc-800 p-4"
+        className="flex w-full items-center gap-3 bg-zinc-800 p-4 cursor-pointer"
         aria-label="Modulo 1: Desvendando o Redux, 12 aulas"
       >
         <span
@@ -27,15 +28,17 @@ export function Module({ title, amountOfLesson, moduleIndex }: ModuleProps) {
           <strong className="text-sm">{title}</strong>
           <span className="text-sm text-zinc-400">{amountOfLesson} aulas</span>
         </span>
-        <ChevronDown className="w-5 h-5 ml-auto text-zinc-400" />
-      </button>
+        <ChevronDown className="w-5 h-5 ml-auto text-zinc-400 group-data-[state=open]:rotate-180 transition-transform" />
+      </Collapsible.Trigger>
 
-      <nav className="relative flex flex-col gap-4 p-6">
-        <Lesson title='Fundamentos do Redux' durationInMilliseconds={530000} />
-        <Lesson title='Fundamentos do Redux' durationInMilliseconds={510000} />
-        <Lesson title='Fundamentos do Redux' durationInMilliseconds={500000} />
-        <Lesson title='Fundamentos do Redux' durationInMilliseconds={400000} />
-      </nav>
-    </div>
+      <Collapsible.Content>
+        <nav className="relative flex flex-col gap-4 p-6">
+          <Lesson title='Fundamentos do Redux' durationInMilliseconds={530000} />
+          <Lesson title='Fundamentos do Redux' durationInMilliseconds={510000} />
+          <Lesson title='Fundamentos do Redux' durationInMilliseconds={500000} />
+          <Lesson title='Fundamentos do Redux' durationInMilliseconds={400000} />
+        </nav>
+      </Collapsible.Content>
+    </Collapsible.Root>
   )
 }
