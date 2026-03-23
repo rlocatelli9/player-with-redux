@@ -24,8 +24,8 @@ export function PlayerComponent() {
         </div>
         <aside
           className={`
-            w-80 absolute top-0 bottom-0 right-0 border-l border-zinc-800
-            bg-zinc-900 overflow-y-auto divide-y-2 divide-zinc-900 
+            w-80 absolute top-0 bottom-0 right-0 p-1 border-l border-zinc-800
+            bg-zinc-900 overflow-y-auto divide-y-4 divide-zinc-900 
             scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-800
           `}
         >

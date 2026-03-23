@@ -13,7 +13,10 @@ export function Module({ title, amountOfLesson, moduleIndex }: ModuleProps) {
     <Collapsible.Root className='group'>
       <Collapsible.Trigger
         type="button"
-        className="flex w-full items-center gap-3 bg-zinc-800 p-4 cursor-pointer"
+        className={`
+          flex w-full items-center gap-3 bg-zinc-800 p-4 cursor-pointer
+          hover:bg-zinc-700 rounded group-data-[state=open]:border border-zinc-500
+        `}
         aria-label="Modulo 1: Desvendando o Redux, 12 aulas"
       >
         <span
