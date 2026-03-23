@@ -18,7 +18,7 @@ export interface ModuleProps {
 export interface VideoState {
   currentVideo: Video | null
   status: 'idle' | 'loading' | 'error',
-  course: ModuleProps | null
+  course: ModuleProps
 }
 
 const initialState: VideoState = {
@@ -81,4 +81,5 @@ export const playerSlice = createSlice({
 })
 
 export const { setVideo } = playerSlice.actions
-export const selectPlayer = (state: RootState) => state.video
+export const selectPlayer = (state: RootState) => state.player
+export const selectModule = (state: RootState) => state.player.course.modules

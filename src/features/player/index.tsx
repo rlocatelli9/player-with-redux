@@ -1,9 +1,13 @@
+import { useAppSelector } from '../../core/hooks'
 import { FeedbackButton } from '../../shared/components/feedback-button'
 import { Header } from './components/Header'
 import { Module } from './components/Module'
 import { Player } from './components/Player'
+import { selectModule } from './store/slice'
 
 export function PlayerComponent() {
+  const modules = useAppSelector(selectModule)
+
   return (
     <div className="flex w-[1100px] flex-col gap-6">
       <div className="flex items-center justify-between">
@@ -28,9 +32,16 @@ export function PlayerComponent() {
             scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-800
           `}
         >
-          <Module moduleIndex={0} amountOfLesson={12} title='Desvendando o Redux' />
-          <Module moduleIndex={1} amountOfLesson={6} title='Desvendando o Redux' />
-          <Module moduleIndex={2} amountOfLesson={10} title='Desvendando o Redux' />
+          {
+            modules.map(module => (
+              <Module
+                key={module.id}
+                amountOfLesson={module.lessons.length}
+                moduleIndex={Number(module.id)}
+                title={module.title}
+              />
+            ))
+          }
         </aside>
       </main>
     </div>
