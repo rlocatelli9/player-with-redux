@@ -20,7 +20,7 @@ export function Module({ title, amountOfLesson, moduleIndex }: ModuleProps) {
     if (id === currentModule.id) {
       setOpen(true)
     }
-  }, [])
+  }, [id, currentModule.id])
 
   const Toggle = () => {
     setOpen(state => !state)

@@ -84,10 +84,27 @@ export const playerSlice = createSlice({
     play: (state, action: PayloadAction<CurrentVideoProps>) => {
       state.current = action.payload
     },
+    next: (state) => {
+      const nextLessonExists = state.current.lessonIndex < state.course.modules[state.current.moduleIndex].lessons.length - 1
+      const nextModuleExists = state.current.moduleIndex < state.course.modules.length - 1
+      if(nextLessonExists){
+        state.current = {
+          ...state.current,
+          lessonIndex: state.current.lessonIndex + 1
+        }
+      } else if(nextModuleExists){
+        state.current = {
+          moduleIndex: state.current.moduleIndex + 1,
+          lessonIndex: 0
+        }
+      } else {
+        console.info('Você finalizou o curso')
+      }
+    }
   },
 })
 
-export const { play } = playerSlice.actions
+export const { play, next } = playerSlice.actions
 
 export const selectPlayer = (state: RootState) => state.player
 export const selectModule = (state: RootState) => state.player.course.modules

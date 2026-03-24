@@ -1,9 +1,10 @@
 import ReactPlayer from 'react-player'
 import * as Dialog from '@radix-ui/react-dialog'
 import { useAppSelector } from '../../../core/hooks'
-import { selectCurrentLesson, selectPlayer } from '../store/slice'
+import { next, selectCurrentLesson, selectPlayer } from '../store/slice'
 import { formatMS } from '../utils/number-format'
 import { useEffect, useRef, useState } from 'react'
+import { useDispatch } from 'react-redux'
 
 const SECONDS_BEFORE_END = 10
 
@@ -11,6 +12,7 @@ export function Player() {
   const playerRef = useRef<HTMLVideoElement | null>(null)
   const [openedOnce, setOpenedOnce] = useState<boolean>(false)
   const [open, setOpen] = useState<boolean>(false)
+  const dispatch = useDispatch()
 
   const initialState = {
     seeking: false,
@@ -82,6 +84,9 @@ export function Player() {
         onTimeUpdate={handleTimeUpdate}
         onProgress={handleProgress}
         onDurationChange={handleDurationChange}
+        onEnded={() => {
+          dispatch(next())
+        }}
         aria-label={`${current.title}. Duração: ${formatMS(current.duration)} minutos`}
         src={`https://www.youtube.com/watch?v=${current.id}`}
       />
@@ -99,7 +104,9 @@ export function Player() {
               p-2 flex flex-col gap-2 justify-center items-center text-zinc-200 font-mono
             `}
           >
-            <p>O Video vai terminar em: {state.remain}s</p>
+            <Dialog.Title>
+              O Video vai terminar em: {state.remain}s
+            </Dialog.Title>
 
             <button
               className={`
