@@ -20,8 +20,9 @@ export interface CurrentVideoProps {
 }
 
 export interface VideoState {
-  current: CurrentVideoProps,
+  current: CurrentVideoProps
   course: ModuleProps
+  autoPlay: boolean
 }
 
 const initialState: VideoState = {
@@ -72,7 +73,8 @@ const initialState: VideoState = {
         ]
       }
     ]
-  }
+  },
+  autoPlay:true,
 }
 
 export const playerSlice = createSlice({
@@ -82,7 +84,6 @@ export const playerSlice = createSlice({
     play: (state, action: PayloadAction<CurrentVideoProps>) => {
       state.current = action.payload
     },
-
   },
 })
 
