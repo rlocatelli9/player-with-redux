@@ -2,7 +2,8 @@ import { ChevronDown } from 'lucide-react'
 import { Lesson } from './Lesson'
 import * as Collapsible from '@radix-ui/react-collapsible'
 import { useAppSelector } from '../../../core/hooks'
-import { selectModule } from '../store/slice'
+import { selectCurrentModule, selectModule } from '../store/slice'
+import { useLayoutEffect, useState } from 'react'
 
 interface ModuleProps {
   title: string
@@ -11,11 +12,25 @@ interface ModuleProps {
 }
 
 export function Module({ title, amountOfLesson, moduleIndex }: ModuleProps) {
-  const { lessons } = useAppSelector(selectModule)[moduleIndex]
+  const [open, setOpen] = useState(false)
+  const { id, lessons } = useAppSelector(selectModule)[moduleIndex]
+  const currentModule = useAppSelector(selectCurrentModule)
+
+  useLayoutEffect(() => {
+    if (id === currentModule.id) {
+      setOpen(true)
+    }
+  }, [])
+
+  const Toggle = () => {
+    setOpen(state => !state)
+  }
+
   return (
-    <Collapsible.Root className='group'>
+    <Collapsible.Root className='group' open={open}>
       <Collapsible.Trigger
         type="button"
+        onClick={Toggle}
         className={`
           flex w-full items-center gap-3 bg-zinc-800 p-4 cursor-pointer
           hover:bg-zinc-700 rounded group-data-[state=open]:border border-zinc-500
