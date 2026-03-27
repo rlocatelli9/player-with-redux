@@ -1,30 +1,40 @@
-# React + TypeScript + Vite
+### Custom Player Advanced (Vite + TypeScript + Redux toolkit)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project, they was builded to focusing in how handle with a lot of data volumes and user experience.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-# Feature-First structure
+### Feature-First structure
 
 ```sh
 src/
 ├── assets/                      # Tailwind v4 globals + Imagens
-├── common/                      # UI KIT + UTILS (O "Shared")
+├── common/                      # UI KIT + UTILS ("Shared")
 │   ├── components/              # Button.tsx, Modal.tsx
-│   ├── types/                   # Tipos globais/compartilhados
+│   ├── types/                   # Global types
 │   └── services/                # API Client base
-├── features/                    # DOMÍNIOS COMPLETOS
-│   ├── auth/                    # Tudo de Auth (UI + Store + API)
-│   └── video-player/            # Tudo do Player
+├── features/                    # DOMAIN
+│   ├── auth/                    # All about Auth (UI + Store + API)
+│   └── video-player/            # All about Player
 │       ├── components/          # Player, Controls, List
-│       ├── store/               # Slice do Redux (Estado + Actions)
-│       ├── services/            # Chamadas de API específicas
-│       └── hooks/               # usePlayerLogic.ts
-├── store/                       # CENTRALIZADOR REDUX
-│   ├── rootReducer.ts           # Importa slices de cada feature
-│   └── index.ts                 # Store configurada
-└── pages/                       # Rotas (Importam direto de features/)
+│       ├── store/               # Redux slice (state + actions)
+│       ├── services/            # API call specific
+│       └── hooks/               # hook custom logic.ts
+├── store/                       # REDUX
+│   ├── rootReducer.ts           # Import the slices of each feature
+│   └── index.ts                 # Store
+└── pages/                       # Routes (import direct of features/)
 ```
+
+### 🚀 Planing:
+
+This timeline follow the logic of  **technical dependency**: first, easy visual base and functional, evolving to complex architecture and optimizations.
+
+| Priority | Feature | Complexity | What the reason? | Status |
+| :--- | :--- | :---: | :--- | :---: |
+| **1** | **UI: Customized Player (Radix + Tailwind)** | Easy | **Visual Base:** Without the play/pause button, there aren't to dispatch to Redux. | [ ] |
+| **2** | **Sync: Redux + React-Player** | Medium | **Functional Base:** Connect the UI with logic, allowing that the global state control the player. | [ ] |
+| **3** | **Data Fetching: RTK Query (Metadata/Playlist)** | Medium | **Data flow:** Define how the videos into the app and allowing the content change. | [ ] |
+| **4** | **History: Persistence (LocalStorage)** | Medium | **Inicial Persistence:** Easy way to validate the "Concluded Check" before of IndexedDB. | [ ] |
+| **5** | **Performance: Memoized Selectors** | Medium | **Optimization:** Make sure that the UI don't freeze with the Player fast updates. | [ ] |
+| **6** | **Analytics: Middleware to Intercept** | Hard | **Abstraction:** Should that the state actions (Play/Pause) already that they are already mature and mapped out. | [ ] |
+| **7** | **Telemetry: Heartbeat of Analytics** | Hard | **Product Vision:** Depends of `onProgress` and of Middleware to process the frequently request. | [ ] |
+| **8** | **Resilience: Offline-first (IndexedDB)** | Expert | **Hardiness:** Evolution of Step 4 to sync layer and data resilience. | [ ] |
