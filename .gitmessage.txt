@@ -1,0 +1,14 @@
+# <type>: <short imperative summary>
+#
+# Suggested types: feat, fix, refactor, docs, test, chore
+#
+# Context:
+# -
+#
+# Changes:
+# -
+# -
+#
+# Validation:
+# - [ ] pnpm run lint
+# - [ ] pnpm run build
