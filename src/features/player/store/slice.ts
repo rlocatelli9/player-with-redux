@@ -34,42 +34,42 @@ const initialState: VideoState = {
     modules: [
       {
         id: "0",
-        title: "Fundamentos do React",
+        title: "React Fundamentals",
         lessons: [
-          { id: "NhUr8cwDiiM", title: "O que é React?", duration: 600000 },
-          { id: "_gHr2Pe5LCY", title: "Criando o primeiro projeto", duration: 1200000 }
+          { id: "NhUr8cwDiiM", title: "What is React?", duration: 600000 },
+          { id: "_gHr2Pe5LCY", title: "Creating the first project", duration: 1200000 }
         ]
       },
       {
         id: "1",
-        title: "Estado e Imutabilidade",
+        title: "State and Immutability",
         lessons: [
-          { id: "mY9MLdifqe0", title: "Entendendo o useState", duration: 900000 },
-          { id: "YMxc9biU9ms", title: "Trabalhando com Listas", duration: 750000 }
+          { id: "mY9MLdifqe0", title: "Understanding useState", duration: 900000 },
+          { id: "YMxc9biU9ms", title: "Working with Lists", duration: 750000 }
         ]
       },
       {
         id: "2",
-        title: "Introdução ao Redux",
+        title: "Introduction to Redux",
         lessons: [
-          { id: "69e1MoUWE1g", title: "Arquitetura Flux e Redux", duration: 1800000 },
-          { id: "2lxCaLJ2Rbk", title: "Actions e Reducers", duration: 2100000 }
+          { id: "69e1MoUWE1g", title: "Flux and Redux Architecture", duration: 1800000 },
+          { id: "2lxCaLJ2Rbk", title: "Actions and Reducers", duration: 2100000 }
         ]
       },
       {
         id: "3",
         title: "Redux Toolkit (RTK)",
         lessons: [
-          { id: "3aFexvlQ2A8", title: "Simplificando com RTK", duration: 2400000 },
-          { id: "ciTi5tPCKa8", title: "Configurando o Store", duration: 1320000 }
+          { id: "3aFexvlQ2A8", title: "Simplifying with RTK", duration: 2400000 },
+          { id: "ciTi5tPCKa8", title: "Configuring the Store", duration: 1320000 }
         ]
       },
       {
         id: "4",
-        title: "Chamadas Assíncronas",
+        title: "Asynchronous Calls",
         lessons: [
-          { id: "z2XCUu2wIl0", title: "Redux Thunk na prática", duration: 2700000 },
-          { id: "FnKc64b7bUI", title: "Requisições HTTP com Axios", duration: 1980000 }
+          { id: "z2XCUu2wIl0", title: "Redux Thunk in Practice", duration: 2700000 },
+          { id: "FnKc64b7bUI", title: "HTTP Requests with Axios", duration: 1980000 }
         ]
       }
     ]
@@ -98,7 +98,7 @@ export const playerSlice = createSlice({
           lessonIndex: 0
         }
       } else {
-        console.info('Você finalizou o curso')
+        console.info('You completed the course')
       }
     }
   },
