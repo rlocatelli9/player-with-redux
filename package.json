@@ -9,7 +9,9 @@
     "lint": "biome check .",
     "format": "biome format --write .",
     "check": "pnpm run lint && pnpm run build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@radix-ui/react-collapsible": "1.1.12",
@@ -32,6 +34,7 @@
     "globals": "^17.4.0",
     "tailwind-scrollbar": "^4.0.2",
     "typescript": "~5.9.3",
-    "vite": "^8.0.1"
+    "vite": "^8.0.1",
+    "vitest": "^4.1.2"
   }
 }
