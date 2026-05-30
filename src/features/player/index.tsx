@@ -1,12 +1,23 @@
+import { useSuspenseQuery } from '@tanstack/react-query'
+import { useDispatch } from 'react-redux'
 import { useAppSelector } from '../../core/hooks'
 import { FeedbackButton } from '../../shared/components/feedback-button'
 import { Header } from './components/Header'
 import { Module } from './components/Module'
 import { Player } from './components/Player'
-import { selectModule } from './store/slice'
+import { getModulesListByCourseIdQueryOptions } from './services/queries/get-modules-list-by-id'
+import { save, selectModule } from './store/slice'
 
 export function PlayerComponent() {
   const modules = useAppSelector(selectModule)
+  const dispatch = useDispatch()
+  const { data, isPending } = useSuspenseQuery({
+    ...getModulesListByCourseIdQueryOptions({ courseId: 123 }),
+  })
+
+  if (!isPending && data.success) {
+    dispatch(save({ modules: data.data.modules || [] }))
+  }
 
   return (
     <div className="flex w-[1100px] flex-col gap-6">
@@ -32,16 +43,14 @@ export function PlayerComponent() {
             scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-800
           `}
         >
-          {
-            modules.map(module => (
-              <Module
-                key={module.id}
-                amountOfLesson={module.lessons.length}
-                moduleIndex={Number(module.id)}
-                title={module.title}
-              />
-            ))
-          }
+          {modules.map((module) => (
+            <Module
+              key={module.id}
+              amountOfLesson={module.lessons.length}
+              moduleIndex={Number(module.id)}
+              title={module.title}
+            />
+          ))}
         </aside>
       </main>
     </div>

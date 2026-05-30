@@ -1,31 +1,8 @@
-// src/entities/video/model/slice.ts
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '../../../core/store'
+import type { CourseProps, CurrentVideoProps, ModuleProps, PlayerStateProps } from '../schemas'
 
-export interface ModuleProps {
-  modules: {
-    id: number
-    title: string
-    lessons: {
-      id: string
-      title: string
-      duration: number
-    }[]
-  }[]
-}
-
-export interface CurrentVideoProps {
-  moduleIndex: number,
-  lessonIndex: number
-}
-
-export interface VideoState {
-  current: CurrentVideoProps
-  course: ModuleProps | null
-  autoPlay: boolean
-}
-
-const initialState: VideoState = {
+const initialState: PlayerStateProps = {
   current: {
     moduleIndex: 0,
     lessonIndex: 0
@@ -38,6 +15,11 @@ export const playerSlice = createSlice({
   name: 'player',
   initialState,
   reducers: {
+    save: (state, action: PayloadAction<CourseProps>) => {
+      const { modules } = action.payload
+      state.course = { modules }
+
+    },
     play: (state, action: PayloadAction<CurrentVideoProps>) => {
       state.current = action.payload
     },
@@ -63,16 +45,16 @@ export const playerSlice = createSlice({
   },
 })
 
-export const { play, next } = playerSlice.actions
+export const { play, next, save } = playerSlice.actions
 
 export const selectPlayer = (state: RootState) => state.player
 export const selectModule = (state: RootState) => state.player.course?.modules || [] as ModuleProps[]
 export const selectCurrentModule = (state: RootState) => {
-  if (!state.player.course?.modules.length) return 0
+  if (!state.player.course?.modules.length) return null
   return state.player.course?.modules[state.player.current.moduleIndex]
 }
 export const selectCurrentLesson = (state: RootState) => {
-  if (!state.player.course?.modules.length) return 0
+  if (!state.player.course?.modules.length) return null
   return state.player.course
     ?.modules[state.player.current.moduleIndex]
     .lessons[state.player.current.lessonIndex]
